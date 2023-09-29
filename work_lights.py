@@ -142,9 +142,11 @@ def GetCalendarEvents(service):
             event_end_datetime_str = event['end']['dateTime']
             event_end_date_obj = datetime.datetime.strptime(
                 event_end_datetime_str[:19], '%Y-%m-%dT%H:%M:%S')
+            return EventNotify(event_start_date_obj, event_end_date_obj)
         else:
             if LOGGING:
                 print('Whole day event: {}')
+
             continue
         # attendees = event.get('attendees')
 
@@ -164,7 +166,6 @@ def GetCalendarEvents(service):
         #         if LOGGING:
         #             print('Self-organized event: {}')
         #         return EventNotify(event_start_date_obj, event_end_date_obj)
-        return EventNotify(event_start_date_obj, event_end_date_obj)
     return 'Ambient'
 
 

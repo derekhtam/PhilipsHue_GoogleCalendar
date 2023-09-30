@@ -12,6 +12,7 @@ import pickle
 import yaml
 import random
 import time
+import atexit
 
 # End program at specific military time
 WORK_DAY_END = datetime.time(20, 00, 00)
@@ -194,7 +195,16 @@ def EventNotify(event_start_date_obj, event_end_date_obj):
         return 'Ambient'
 
 
+def exit_handler():
+    if LOGGING:
+        print('Process terminated. Lights off.')
+    bridge = Bridge(BRIDGE_IP, BRIDGE_USERNAME)
+    hueLights = bridge.lights
+    TurnOffLights(hueLights)
+
+
 def main():
+    atexit.register(exit_handler)
     # https://developers.google.com/calendar/quickstart/python
     # Initialize Calendar API
     creds = None

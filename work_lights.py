@@ -14,7 +14,7 @@ import random
 import time
 
 # End program at specific military time
-WORK_DAY_END = datetime.time(19, 00, 00)
+WORK_DAY_END = datetime.time(20, 00, 00)
 
 # Allow printing to STDOUT
 LOGGING = True
@@ -166,7 +166,7 @@ def GetCalendarEvents(service):
         #         if LOGGING:
         #             print('Self-organized event: {}')
         #         return EventNotify(event_start_date_obj, event_end_date_obj)
-    return 'Ambient'
+    # return 'Ambient'
 
 
 def EventNotify(event_start_date_obj, event_end_date_obj):
